@@ -1,5 +1,8 @@
 # README
 
+This is the ERD set up of how I am going to start to structure my web application and their relationships.
+[Homeschool Diagram.drawio.pdf](https://github.com/jess-lynn-b/homeschool_ap
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
