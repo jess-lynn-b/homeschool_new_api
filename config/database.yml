@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: homeschool_new_api
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+test:
+  <<: *default
+  database: homeschool_new_api
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: homeschool_new_api_production
+  username: homeschool_new_api
+  password: <%= ENV["HOMESCHOOL_NEW_API_DATABASE_PASSWORD"] %>
