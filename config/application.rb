@@ -18,6 +18,7 @@ module HomeschoolNewApi
 
     # Configuration for the application, engines, and railties goes here.
     #
+    "active_storage/engine"
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

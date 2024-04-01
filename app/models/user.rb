@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  has_one_attached :image
   #associations
   has_one :parent, dependent: :destroy
+  has_one_attached :avatar
 
   #validations
   validates :email, presence: true, uniqueness: true

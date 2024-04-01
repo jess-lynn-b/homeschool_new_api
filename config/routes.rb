@@ -21,5 +21,7 @@ Rails.application.routes.draw do
     put '/:username/edit', to: 'users#update'
 
     delete '/:username', to: 'users#destroy'
+
+    #need to add the path to upload an image to the Awards controller.... then test in postman
   end
 end

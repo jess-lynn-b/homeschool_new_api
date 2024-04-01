@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def upload_image
+  def upload_avatar
     puts params[:user_id]
     # user = User.find(params[:user_id])
-    if @current_user.image.attach(params[:image])
+    if @current_user.avatar.attach(params[:avatar])
       render json: { message: "Image uploaded successfully." }, status: :ok
     else
       render json: { message: "Image upload failed." }, status: :unprocessable_entity
@@ -21,6 +21,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.permit(:username, :email, :password, :password_confirmation)
+    params.require(:user)permit(:username, :email, :password, :password_confirmation, :avatar)
   end
 end
