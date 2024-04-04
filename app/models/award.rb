@@ -3,6 +3,6 @@ class Award < ApplicationRecord
   belongs_to :user, :parent
   has_many_attached :images 
 
-  @award.images.attach(params[:images])
-  @award.images.attached?
+  # @award.images.attach(params[:images])
+  # @award.images.attached?
 end

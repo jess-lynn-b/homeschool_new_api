@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
+  resources :hour_trackings, only: [:index]
   resources :users do
      post 'upload_image', to: 'users#upload_image'
-
-     resources :hour_trackings, only: [:create]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -23,6 +22,9 @@ Rails.application.routes.draw do
     put '/:username/edit', to: 'users#update'
 
     delete '/:username', to: 'users#destroy'
+
+    # pull all the hours 
+    get '/hour_trackings', to: 'hour_trackings#index'
 
     #need to add the path to upload an image to the Awards controller.... then test in postman
   end

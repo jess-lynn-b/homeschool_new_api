@@ -8,6 +8,11 @@ class HoursController < ApplicationController
     end
   end
 
+  def index
+    hour_trackings = HourTracking.all
+    render json: hour_trackings
+  end
+
   private
 
   def hours

@@ -12,6 +12,8 @@ class AwardsController < ApplicationController
     end
   end
 
+  
+
   private
     def award_params
       params.require(:award).permit(images: [])
