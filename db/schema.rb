@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_06_025253) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_10_154755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,6 +73,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_06_025253) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_hour_trackings_on_user_id"
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.date "date"
+    t.string "task"
+    t.integer "hours"
+    t.integer "minutes"
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "parents", force: :cascade do |t|

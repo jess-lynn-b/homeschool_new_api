@@ -32,6 +32,7 @@ Rails.application.routes.draw do
  # Route for retrieving all hour_trackings
 #  get '/hours', to: 'hours#index'
 
+delete '/hours/:id', to: 'hours#destroy', as: :delete_hours
  # Add a route for uploading image to Awards controller (if Awards controller exists)
  post '/users/:username/upload_image', to: 'awards#upload_image'
 
