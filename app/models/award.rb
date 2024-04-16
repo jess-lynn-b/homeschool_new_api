@@ -1,8 +1,14 @@
 class Award < ApplicationRecord
   #associations
-  belongs_to :user, :parent
+  belongs_to :user
+  # belongs_to :parent
   has_many_attached :images 
+  
+  # Add the following attributes
+  attribute :title, :string
+  attribute :description, :text
 
-  # @award.images.attach(params[:images])
-  # @award.images.attached?
+  # Add validations if needed
+  validates :title, presence: true
+ 
 end

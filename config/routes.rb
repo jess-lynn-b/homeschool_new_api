@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   #hour_tracking
   resources :hours 
 
+  #awards
+  resources :awards
+
+  #awards? only: [:index, :show, :create]
+
   # Nested for users and profiles
   resources :users, except: [:index, :destroy] do
     # resource :profile, only: [:show, :edit, :update]
@@ -34,7 +39,9 @@ Rails.application.routes.draw do
 
 delete '/hours/:id', to: 'hours#destroy', as: :delete_hours
  # Add a route for uploading image to Awards controller (if Awards controller exists)
- post '/users/:username/upload_image', to: 'awards#upload_image'
+ post '/awards', to: 'awards#upload'
+ delete '/awards/:id', to: 'awards#destroy',
+ as: :delete_awards
 
  # Define your other application routes here...
 end

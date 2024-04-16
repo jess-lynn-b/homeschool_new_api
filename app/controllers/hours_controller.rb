@@ -3,8 +3,6 @@ class HoursController < ApplicationController
   def index
     @hours = Hour.all
     render json: @hours
-    # hour_trackings = HourTracking.all
-    # render json: hour_trackings
   end
 
   def create
