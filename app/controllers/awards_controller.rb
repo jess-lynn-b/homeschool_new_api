@@ -2,30 +2,27 @@ class AwardsController < ApplicationController
   before_action :authenticate_request, only: [:create]
 
   def index
-    @award = Award.all
-    render json: @award, include: { images_attachments: { include: :blob}}
+    @awards = Award.all
+    render json: serialize_awards(@awards)
+  end
+
+   #GET/SHOW
+  def show
+    award = Award.find(params[:id])
+    render json: serialize_award(award)
   end
 
   def create
-    # puts params
-    # @award = Award.new(award_params, user_id: @current_user.id)
     @award = Award.new(title: params[:title], description: params[:description], user_id: @current_user.id)
     @award.images.attach(params[:images])
-    puts @award
+    puts @awards
   
     if @award.save!
-      render json: { message: 'Award created successfully'}, status: :created
+      render json: { message: 'Award created successfully', award: serialize_award(@award)}, status: :created
     else
       render json: { error: 'Failed to create award' }, status: :unprocessable_entity
     end
   end
-
-  #GET/SHOW
-  def show
-    @award = Award.find(params[:id])
-    render json: awards 
-  end
-  #PUT
 
   #DELETE /award/:id
   def destroy
@@ -39,10 +36,26 @@ class AwardsController < ApplicationController
 
   private
     def award_params
-      params.permit(:title, :description, :images)
+      params.permit(:title, :description, images: [])
+    end
+    def serialize_award(award)
+      {
+        id: award.id,
+        title: award.title,
+        description: award.description,
+        image_url: award_image_url(award)
+      }
     end
 
-    def set_awards
-      @awards = Award.find(params)
+    def serialize_awards(awards)
+      awards.map { |award| serialize_award(award) }
+    end
+
+    def award_image_url(award)
+      if award.images.attached?
+        rails_blob_url(award.images.first)
+      else
+        nil # Handle case where no image is attached
+      end
     end
 end
