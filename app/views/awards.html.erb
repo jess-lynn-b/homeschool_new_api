@@ -1,0 +1,4 @@
+<% @awards.each do |award| %>
+  <%= cl_image_tag(award.image_url, width: 300, height: 200, crop: "fill") %>
+<% end %>
+

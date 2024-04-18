@@ -19,4 +19,10 @@ class Award < ApplicationRecord
       ActionController::Base.helpers.asset_path('default_image.jpg')
     end
   end
+
+  def resize_image(input_file, output_file, width, height)
+    image = MiniMagick::Image.open(input_file)
+    image.resize "#{width}x#{height}"
+    image.write output_file
+  end
 end

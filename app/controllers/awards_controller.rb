@@ -33,12 +33,18 @@ class AwardsController < ApplicationController
       render json: {error: 'Failed to delete award'}, status: :unprocessable_entity
     end
   end
+   #image resize
+   def resize_image(input_file, output_file, width, height)
+    image = MiniMagick::Image.open(input_file)
+    image.resize "#{width}x#{height}"
+    image.write output_file
+  end
 
   private
     def award_params
       params.permit(:title, :description, images: [])
     end
-    
+
     def serialize_award(award)
       {
         id: award.id,

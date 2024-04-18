@@ -249,6 +249,7 @@ DEPENDENCIES
   faker
   image_processing (~> 1.2)
   jwt
+  mini_magick
   pg
   puma (>= 5.0)
   rack-cors
