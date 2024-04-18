@@ -1,5 +1,5 @@
 class AwardsController < ApplicationController
-  before_action :authenticate_request, only: [:create]
+  before_action :authenticate_request, only: [ :create]
 
   def index
     @awards = Award.all
@@ -38,6 +38,7 @@ class AwardsController < ApplicationController
     def award_params
       params.permit(:title, :description, images: [])
     end
+    
     def serialize_award(award)
       {
         id: award.id,
@@ -57,5 +58,11 @@ class AwardsController < ApplicationController
       else
         nil # Handle case where no image is attached
       end
+    end
+
+    def find_award
+      @award = Award.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      render json: { error: 'Award not found' }, status: :not_found
     end
 end

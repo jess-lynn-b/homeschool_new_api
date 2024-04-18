@@ -3,7 +3,6 @@ class Award < ApplicationRecord
 
   #associations
   belongs_to :user
-  # belongs_to :parent
   has_many_attached :images 
   
   # Add the following attributes
